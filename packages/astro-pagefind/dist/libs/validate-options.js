@@ -1,2 +1,0 @@
-import{z as o}from"zod";var e=o.object({index:o.object({rootSelector:o.string().optional(),excludeSelectors:o.array(o.string()).optional(),forceLanguage:o.string().optional(),keepIndexUrl:o.boolean().optional(),verbose:o.boolean().optional(),logfile:o.string().optional()}).optional().default({}),directories:o.array(o.string()).optional().default([""]),site:o.string().optional().default("pagefind")}).optional().default({}),a=t=>e.parse(t);export{e as PagefindOptions,a as validateOptions};
-//# sourceMappingURL=validate-options.js.map

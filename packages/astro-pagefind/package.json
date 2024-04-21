@@ -1,0 +1,64 @@
+{
+	"name": "astro-pagefind",
+	"version": "0.1.0",
+	"description": "Performs the indexing operation for the PageFind search engine",
+	"author": {
+		"email": "matteo@manfredi.io",
+		"name": "Matteo Manfredi",
+		"url": "https://matteo.manfredi.io"
+	},
+	"license": "MIT",
+	"keywords": [
+		"astro-integration",
+		"astro-component",
+		"withastro",
+		"astro",
+		"pagefind",
+		"search",
+		"search-engine",
+		"search-index",
+		"search-engine-index",
+		"search-engine-optimization",
+		"seo"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/itsmatteomanf/astro-components.git",
+		"directory": "packages/astro-pagefind"
+	},
+	"homepage": "https://github.com/itsmatteomanf/astro-components/tree/main/packages/astro-pagefind#readme",
+	"publishConfig": {
+		"access": "public"
+	},
+	"sideEffects": false,
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"dev": "tsup --watch",
+		"build": "tsup",
+		"format": "pnpm run format:code",
+		"format:ci": "pnpm run format:imports && pnpm run format:code",
+		"format:code": "prettier -w --cache '**/*' --ignore-unknown",
+		"format:imports": "organize-imports-cli ./tsconfig.json"
+	},
+	"type": "module",
+	"peerDependencies": {
+		"astro": "^4.0.0"
+	},
+	"dependencies": {
+		"astro-integration-kit": "^0.11.0",
+		"pagefind": "^1.1.0",
+		"zod": "^3.22.5"
+	},
+	"devDependencies": {
+		"@types/node": "^20.12.7",
+		"tsup": "^8.0.2"
+	}
+}
