@@ -5,11 +5,8 @@
 		"node": ">=18.19.0"
 	},
 	"scripts": {
-		"package:dev": "pnpm --filter package-name dev",
-		"playground:dev": "pnpm --filter playground dev",
-		"dev": "pnpm --stream -r -parallel dev",
 		"changeset": "changeset",
-		"release": "node scripts/release.mjs",
+		"build": "pnpm --filter './packages/*' run build",
 		"format": "pnpm run format:code",
 		"format:ci": "pnpm run format:imports && pnpm run format:code",
 		"format:code": "prettier -w --cache '**/*' --ignore-unknown",
