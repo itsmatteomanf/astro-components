@@ -4,7 +4,7 @@ import { peerDependencies } from "./package.json";
 export default defineConfig((options) => {
 	const dev = !!options.watch;
 	return {
-		entry: ["src/**/*.(ts|js)"],
+		entry: ["src/**/index.(ts|js)"],
 		format: ["esm"],
 		target: "node20",
 		bundle: true,

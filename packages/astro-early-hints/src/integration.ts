@@ -7,7 +7,7 @@ export const integration = () => {
 		hooks: {
 			"astro:config:setup": ({ addMiddleware }) => {
 				addMiddleware({
-					entrypoint: "@itsmatteomanf/early-hints/middleware",
+					entrypoint: "@itsmatteomanf/astro-early-hints/middleware",
 					order: "post",
 				});
 			},
