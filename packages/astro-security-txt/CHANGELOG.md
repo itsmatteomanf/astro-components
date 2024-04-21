@@ -1,5 +1,11 @@
 # @itsmatteomanf/astro-security-txt
 
+## 0.3.0
+
+### Minor Changes
+
+- [`3728889`](https://github.com/itsmatteomanf/astro-components/commit/372888993583cd3f646de82d6aac57bd5d9fb515) Thanks [@itsmatteomanf](https://github.com/itsmatteomanf)! - Fix Types
+
 ## 0.2.1
 
 ### Patch Changes

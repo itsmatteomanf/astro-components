@@ -2,7 +2,10 @@ import type { AstroIntegration } from "astro";
 import { createIndex } from "pagefind";
 import { ZodError, z } from "zod";
 import { name } from "../package.json";
-import { PagefindOptions as ZodTypes, validateOptions } from "./libs/validate-options";
+import {
+	PagefindOptions as ZodTypes,
+	validateOptions,
+} from "./libs/validate-options";
 
 export const integration = (options: PagefindOptions): AstroIntegration => {
 	let generate = true;
