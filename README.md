@@ -1,9 +1,9 @@
-# package-name
+# Matteo's Astro Components
 
-TODO:description
+A collection of Astro integrations developed by me.
 
 To see how to get started, check out the [package README](./package/README.md)
 
 ## Licensing
 
-[MIT Licensed](./LICENSE). Made with ❤️ by [TODO:user](https://github.com/TODO:github-user).
+[MIT Licensed](./LICENSE). Made with ❤️ by [Matteo Manfredi](https://github.com/itsmatteomanf).

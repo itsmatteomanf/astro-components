@@ -80,4 +80,4 @@ It follows the specs at [securitytxt.org](https://securitytxt.org).
 
 ## Licensing
 
-[MIT Licensed](https://github.com/itsmatteomanf/astro-components/blob/main/LICENSE). Made with ❤️ by [Matteo Manfredi](https://github.com/itsmatteomanf).
+[MIT Licensed](https://github.com/itsmatteomanf/astro-components/blob/main/LICENSE.md). Made with ❤️ by [Matteo Manfredi](https://github.com/itsmatteomanf).
