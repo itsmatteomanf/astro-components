@@ -1,5 +1,11 @@
 # @itsmatteomanf/astro-early-hints
 
+## 0.3.0
+
+### Minor Changes
+
+- [`23fb87f`](https://github.com/itsmatteomanf/astro-components/commit/23fb87fc6e29df36bba676bbabf45350759d5639) Thanks [@itsmatteomanf](https://github.com/itsmatteomanf)! - Fix middleware export
+
 ## 0.2.1
 
 ### Patch Changes
