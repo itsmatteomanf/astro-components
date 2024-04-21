@@ -1,8 +1,8 @@
-import { mkdirSync, writeFileSync } from 'node:fs';
 import type { AstroConfig, AstroIntegration } from "astro";
-import { validateOptions, SecurityTxtOptions } from './libs/validate-options';
-import { z, ZodError } from 'zod';
+import { mkdirSync, writeFileSync } from "node:fs";
+import { ZodError, z } from "zod";
 import { name } from "../package.json";
+import { SecurityTxtOptions, validateOptions } from "./libs/validate-options";
 
 type Options = z.infer<typeof SecurityTxtOptions>;
 
@@ -14,13 +14,15 @@ export const integration = (options: Options): AstroIntegration => {
 	return {
 		name,
 		hooks: {
-			'astro:config:done': async ({ config: cfg, logger }) => {
+			"astro:config:done": async ({ config: cfg, logger }) => {
 				try {
 					validatedOptions = validateOptions(options);
 				} catch (error) {
 					if (error instanceof ZodError) {
 						generate = false;
-						logger.error(`Invalid options for \`security-txt\`. \`security.txt\` will not be generated.`);
+						logger.error(
+							`Invalid options for \`security-txt\`. \`security.txt\` will not be generated.`,
+						);
 					} else {
 						throw error;
 					}
@@ -28,19 +30,27 @@ export const integration = (options: Options): AstroIntegration => {
 				config = cfg;
 			},
 
-			'astro:build:done': async ({ dir, logger }) => {
+			"astro:build:done": async ({ dir, logger }) => {
 				if (!generate) {
 					return;
 				}
 
-				let securityTxtContent = '';
+				let securityTxtContent = "";
 
 				securityTxtContent += `Expires: ${validatedOptions.expires.toISOString()}\n`;
 
-				if (validatedOptions.canonical instanceof Boolean || validatedOptions.canonical === undefined) {
-					if (validatedOptions.canonical || validatedOptions.canonical === undefined) {
+				if (
+					validatedOptions.canonical instanceof Boolean ||
+					validatedOptions.canonical === undefined
+				) {
+					if (
+						validatedOptions.canonical ||
+						validatedOptions.canonical === undefined
+					) {
 						if (!config.site) {
-							logger.warn('No `site` provided. `security.txt` has no canonical.');
+							logger.warn(
+								"No `site` provided. `security.txt` has no canonical.",
+							);
 						} else {
 							securityTxtContent += `Canonical: ${config.site}.well-known/security.txt\n\n`;
 						}
@@ -54,7 +64,7 @@ export const integration = (options: Options): AstroIntegration => {
 
 				if (validatedOptions.preferredLanguages) {
 					if (validatedOptions.preferredLanguages instanceof Array) {
-						securityTxtContent += `Preferred-Languages: ${validatedOptions.preferredLanguages.join(', ')}\n`;
+						securityTxtContent += `Preferred-Languages: ${validatedOptions.preferredLanguages.join(", ")}\n`;
 					} else {
 						securityTxtContent += `Preferred-Languages: ${validatedOptions.preferredLanguages}\n`;
 					}
@@ -68,7 +78,7 @@ export const integration = (options: Options): AstroIntegration => {
 					securityTxtContent += `Contact: ${validatedOptions.contact}\n`;
 				}
 
-				securityTxtContent += '\n';
+				securityTxtContent += "\n";
 
 				if (validatedOptions.encryption) {
 					if (validatedOptions.encryption instanceof Array) {
@@ -120,10 +130,13 @@ export const integration = (options: Options): AstroIntegration => {
 					}
 				}
 
-				mkdirSync(new URL('.well-known', dir), { recursive: true });
-				writeFileSync(new URL('.well-known/security.txt', dir), securityTxtContent);
+				mkdirSync(new URL(".well-known", dir), { recursive: true });
+				writeFileSync(
+					new URL(".well-known/security.txt", dir),
+					securityTxtContent,
+				);
 
-				logger.info('`security.txt` is created.');
+				logger.info("`security.txt` is created.");
 			},
 		},
 	};
