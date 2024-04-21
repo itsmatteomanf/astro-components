@@ -7,9 +7,7 @@ import {
 	validateOptions,
 } from "./libs/validate-options";
 
-export const integration = (
-	options?: PagefindOptions,
-): AstroIntegration => {
+export const integration = (options?: PagefindOptions): AstroIntegration => {
 	let generate = true;
 	let validatedOptions: z.infer<typeof ZodTypes>;
 
