@@ -1,5 +1,5 @@
 {
-	"name": "astro-security-txt",
+	"name": "@itsmatteomanf/astro-security-txt",
 	"version": "0.1.0",
 	"description": "Generate a security.txt file for your Astro site",
 	"author": {
