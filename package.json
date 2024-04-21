@@ -1,0 +1,27 @@
+{
+	"name": "astro-components",
+	"packageManager": "pnpm@8.14.1",
+	"engines": {
+		"node": ">=18.19.0"
+	},
+	"scripts": {
+		"package:dev": "pnpm --filter package-name dev",
+		"playground:dev": "pnpm --filter playground dev",
+		"dev": "pnpm --stream -r -parallel dev",
+		"changeset": "changeset",
+		"release": "node scripts/release.mjs",
+		"format": "pnpm run format:code",
+		"format:ci": "pnpm run format:imports && pnpm run format:code",
+		"format:code": "prettier -w --cache '**/*' --ignore-unknown",
+		"format:imports": "organize-imports-cli ./tsconfig.json"
+	},
+	"devDependencies": {
+		"@changesets/cli": "^2.27.1",
+		"organize-imports-cli": "^0.10.0",
+		"prettier": "^3.2.5"
+	},
+	"dependencies": {
+		"@astrojs/check": "^0.5.10",
+		"typescript": "^5.4.5"
+	}
+}
