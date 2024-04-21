@@ -2,14 +2,12 @@ import type { AstroConfig, AstroIntegration } from "astro";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { ZodError, z } from "zod";
 import { name } from "../package.json";
-import { SecurityTxtOptions, validateOptions } from "./libs/validate-options";
+import { SecurityTxtOptions as ZodTypes, validateOptions } from "./libs/validate-options";
 
-type Options = z.infer<typeof SecurityTxtOptions>;
-
-export const integration = (options: Options): AstroIntegration => {
+export const integration = (options: SecurityTxtOptions): AstroIntegration => {
 	let config: AstroConfig;
 	let generate = true;
-	let validatedOptions: Options;
+	let validatedOptions: z.infer<typeof ZodTypes>;
 
 	return {
 		name,
