@@ -1,27 +1,27 @@
-# `astro-security-txt`
+# `@itsmatteomanf/astro-security-txt`
 
-This is an [Astro integration](https://docs.astro.build/en/guides/integrations-guide/) that TODO:description
+This is an [Astro integration](https://docs.astro.build/en/guides/integrations-guide/) that allows you to easily add a `security.txt` file to your Astro site.
 
 ## Usage
 
 ### Prerequisites
 
-TODO:
+You need to be using `astro@4.0.0` or higher.
 
 ### Installation
 
 Install the integration **automatically** using the Astro CLI:
 
 ```bash
-pnpm astro add package-name
+pnpm astro add @itsmatteomanf/astro-security-txt
 ```
 
 ```bash
-npx astro add package-name
+npx astro add @itsmatteomanf/astro-security-txt
 ```
 
 ```bash
-yarn astro add package-name
+yarn astro add @itsmatteomanf/astro-security-txt
 ```
 
 Or install it **manually**:
@@ -29,58 +29,55 @@ Or install it **manually**:
 1. Install the required dependencies
 
 ```bash
-pnpm add package-name
+pnpm add @itsmatteomanf/astro-security-txt
 ```
 
 ```bash
-npm install package-name
+npm install @itsmatteomanf/astro-security-txt
 ```
 
 ```bash
-yarn add package-name
+yarn add @itsmatteomanf/astro-security-txt
 ```
 
 2. Add the integration to your astro config
 
 ```diff
-+import integration from "package-name";
++import securityTxt from "@itsmatteomanf/astro-security-txt";
 
 export default defineConfig({
   integrations: [
-+    integration(),
++    securityTxt({
++      contact: 'mailto:example@example.com'
++    }),
   ],
 });
 ```
 
 ### Configuration
 
-TODO:configuration
+The configuration opbject, with its defaults, is here:
 
-## Contributing
-
-This package is structured as a monorepo:
-
-- `playground` contains code for testing the package
-- `package` contains the actual package
-
-Install dependencies using pnpm:
-
-```bash
-pnpm i --frozen-lockfile
+```js
+const options = {
+  contact: undefined,
+  expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 365),
+  encryption: undefined,
+  acknowledgements: undefined,
+  preferredLanguages: undefined,
+  canonical: undefined,
+  policy: undefined,
+  hiring: undefined,
+  csaf: undefined,
+};
 ```
 
-Start the playground and package watcher:
+The only required option is `contact`, which must be a string or an array of strings.
 
-```bash
-pnpm dev
-```
+All other options are optional, or a string or an array of strings.
 
-You can now edit files in `package`. Please note that making changes to those files may require restarting the playground dev server.
+It follows the specs at [securitytxt.org](https://securitytxt.org).
 
 ## Licensing
 
-[MIT Licensed](https://github.com/TODO:/blob/main/LICENSE). Made with ❤️ by [TODO:](https://github.com/TODO:).
-
-## Acknowledgements
-
-TODO:
+[MIT Licensed](https://github.com/itsmatteomanf/astro-components/blob/main/LICENSE). Made with ❤️ by [Matteo Manfredi](https://github.com/itsmatteomanf).

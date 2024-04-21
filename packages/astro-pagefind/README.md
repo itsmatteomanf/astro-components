@@ -1,27 +1,27 @@
-# `package-name`
+# `@itsmatteomanf/astro-pagefind`
 
-This is an [Astro integration](https://docs.astro.build/en/guides/integrations-guide/) that TODO:description
+This is an [Astro integration](https://docs.astro.build/en/guides/integrations-guide/) that runs the indexing operation for Pagefind directly during Astro's build.
 
 ## Usage
 
 ### Prerequisites
 
-TODO:
+You need to be using `astro@4.0.0` or higher, and `pagefind@1.0.0` or higher must be installed and in use, as this package just runs the indexing.
 
 ### Installation
 
 Install the integration **automatically** using the Astro CLI:
 
 ```bash
-pnpm astro add package-name
+pnpm astro add @itsmatteomanf/astro-pagefind
 ```
 
 ```bash
-npx astro add package-name
+npx astro add @itsmatteomanf/astro-pagefind
 ```
 
 ```bash
-yarn astro add package-name
+yarn astro add @itsmatteomanf/astro-pagefind
 ```
 
 Or install it **manually**:
@@ -29,58 +29,54 @@ Or install it **manually**:
 1. Install the required dependencies
 
 ```bash
-pnpm add package-name
+pnpm add @itsmatteomanf/astro-pagefind
 ```
 
 ```bash
-npm install package-name
+npm install @itsmatteomanf/astro-pagefind
 ```
 
 ```bash
-yarn add package-name
+yarn add @itsmatteomanf/astro-pagefind
 ```
 
 2. Add the integration to your astro config
 
 ```diff
-+import integration from "package-name";
++import pagefind from "@itsmatteomanf/astro-pagefind";
 
 export default defineConfig({
   integrations: [
-+    integration(),
++    pagefind(),
   ],
 });
 ```
 
 ### Configuration
 
-TODO:configuration
+No configuration is necessary for the integration to work.
 
-## Contributing
+The configuration object allows configuring some aspects of Pagefind.
 
-This package is structured as a monorepo:
-
-- `playground` contains code for testing the package
-- `package` contains the actual package
-
-Install dependencies using pnpm: 
-
-```bash
-pnpm i --frozen-lockfile
+```js
+const options = {
+  index: {
+    rootSelector: undefined,
+    excludeSelectors: undefined,
+    forceLanguage: undefined,
+    keepIndexUrl: undefined,
+    verbose: undefined,
+    logfile: undefined,
+  },
+  directories: [""],
+  site: "pagefind",
+};
 ```
 
-Start the playground and package watcher:
+All the settings align with Pagefind's CLI, at [https://pagefind.app/docs/config-options/](https://pagefind.app/docs/config-options/). If the optipon is not listed here, it's not suppoerted by this integration.
 
-```bash
-pnpm dev
-```
-
-You can now edit files in `package`. Please note that making changes to those files may require restarting the playground dev server.
+Directories are relative to the output directory of your Astro project, so `""` will match the root of the output folder.
 
 ## Licensing
 
-[MIT Licensed](https://github.com/TODO:/blob/main/LICENSE). Made with ❤️ by [TODO:](https://github.com/TODO:).
-
-## Acknowledgements
-
-TODO:
+[MIT Licensed](https://github.com/itsmatteomanf/astro-components/blob/main/LICENSE). Made with ❤️ by [Matteo Manfredi](https://github.com/itsmatteomanf).

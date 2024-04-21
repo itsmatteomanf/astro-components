@@ -1,27 +1,27 @@
-# `package-name`
+# `@itsmatteomanf/astro-early-hints`
 
-This is an [Astro integration](https://docs.astro.build/en/guides/integrations-guide/) that TODO:description
+This is an [Astro integration](https://docs.astro.build/en/guides/integrations-guide/) that provides a way to add link tags for all CSS and JS modules that Astro automatically adds in each page.
 
 ## Usage
 
 ### Prerequisites
 
-TODO:
+The only prerequisite is using `astro@4.0.0` or higher.
 
 ### Installation
 
 Install the integration **automatically** using the Astro CLI:
 
 ```bash
-pnpm astro add package-name
+pnpm astro add @itsmatteomanf/astro-early-hints
 ```
 
 ```bash
-npx astro add package-name
+npx astro add @itsmatteomanf/astro-early-hints
 ```
 
 ```bash
-yarn astro add package-name
+yarn astro add @itsmatteomanf/astro-early-hints
 ```
 
 Or install it **manually**:
@@ -29,58 +29,33 @@ Or install it **manually**:
 1. Install the required dependencies
 
 ```bash
-pnpm add package-name
+pnpm add @itsmatteomanf/astro-early-hints
 ```
 
 ```bash
-npm install package-name
+npm install @itsmatteomanf/astro-early-hints
 ```
 
 ```bash
-yarn add package-name
+yarn add @itsmatteomanf/astro-early-hints
 ```
 
 2. Add the integration to your astro config
 
 ```diff
-+import integration from "package-name";
++import earlyHints from "@itsmatteomanf/astro-early-hints";
 
 export default defineConfig({
   integrations: [
-+    integration(),
++    earlyHints(),
   ],
 });
 ```
 
 ### Configuration
 
-TODO:configuration
-
-## Contributing
-
-This package is structured as a monorepo:
-
-- `playground` contains code for testing the package
-- `package` contains the actual package
-
-Install dependencies using pnpm:
-
-```bash
-pnpm i --frozen-lockfile
-```
-
-Start the playground and package watcher:
-
-```bash
-pnpm dev
-```
-
-You can now edit files in `package`. Please note that making changes to those files may require restarting the playground dev server.
+No configuration is necessary or exists.
 
 ## Licensing
 
-[MIT Licensed](https://github.com/TODO:/blob/main/LICENSE). Made with ❤️ by [TODO:](https://github.com/TODO:).
-
-## Acknowledgements
-
-TODO:
+[MIT Licensed](https://github.com/itsmatteomanf/astro-components/blob/main/LICENSE). Made with ❤️ by [Matteo Manfredi](https://github.com/itsmatteomanf).
