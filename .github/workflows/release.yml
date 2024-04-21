@@ -15,7 +15,7 @@ env:
 jobs:
   changelog:
     name: Changelog PR or Release
-    if: ${{ github.repository_owner == 'withastro' }}
+    if: ${{ github.repository_owner == 'itsmatteomanf' }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
