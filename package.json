@@ -6,13 +6,15 @@
     "format": "pnpm run format:code",
     "format:ci": "pnpm run format:imports && pnpm run format:code",
     "format:code": "prettier -w --cache '**/*' --ignore-unknown",
-    "format:imports": "organize-imports-cli ./tsconfig.json"
+    "format:imports": "organize-imports-cli ./tsconfig.json",
+    "version": "changeset version && pnpm install --no-frozen-lockfile && pnpm run format"
   },
   "dependencies": {
     "@astrojs/check": "^0.5.10",
     "typescript": "^5.4.5"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.1",
     "organize-imports-cli": "^0.10.0",
     "prettier": "^3.2.5",
