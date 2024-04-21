@@ -1,5 +1,11 @@
 # @itsmatteomanf/astro-early-hints
 
+## 0.2.1
+
+### Patch Changes
+
+- [`1e2076e`](https://github.com/itsmatteomanf/astro-components/commit/1e2076e1ed5886f235d056526f170be4fd6dcaea) Thanks [@itsmatteomanf](https://github.com/itsmatteomanf)! - Update licence links in `README.md`
+
 ## 0.2.0
 
 ### Minor Changes
