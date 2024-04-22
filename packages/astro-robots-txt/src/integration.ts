@@ -2,10 +2,7 @@ import type { AstroConfig, AstroIntegration } from "astro";
 import { writeFileSync } from "node:fs";
 import { ZodError, z } from "zod";
 import { name } from "../package.json";
-import {
-	ZodTypes,
-	validateOptions,
-} from "./libs/validate-options";
+import { ZodTypes, validateOptions } from "./libs/validate-options";
 
 export const integration = (options: RobotsTxtOptions): AstroIntegration => {
 	let config: AstroConfig;
@@ -40,66 +37,67 @@ export const integration = (options: RobotsTxtOptions): AstroIntegration => {
 
 				if (validatedOptions.sitemap) {
 					if (validatedOptions.sitemap instanceof Boolean) {
-						robotsTxtContent += `Sitemap: ${new URL(`${validatedOptions.sitemapBaseFileName}.xml`, config.site)}\n`;
+						if (!config.site) {
+							logger.warn("No `site` provided. `robots.txt` has no sitemap.");
+						} else {
+							robotsTxtContent += `sitemap: ${new URL(`${validatedOptions.sitemapBaseFileName}.xml`, config.site)}\n`;
+						}
 					} else if (validatedOptions.sitemap instanceof Array) {
 						validatedOptions.sitemap.map((sitemap) => {
-							robotsTxtContent += `Sitemap: ${sitemap}\n`;
+							robotsTxtContent += `sitemap: ${sitemap}\n`;
 						});
 					} else {
-						robotsTxtContent += `Sitemap: ${validatedOptions.sitemap}\n`;
+						robotsTxtContent += `sitemap: ${validatedOptions.sitemap}\n`;
 					}
 				}
 
 				robotsTxtContent += "\n";
 
 				validatedOptions.policy.map((policy) => {
-					robotsTxtContent += `User-agent: ${policy.userAgent}\n`;
+					robotsTxtContent += `user-agent: ${policy.userAgent}\n`;
 
 					if (policy.allow) {
 						if (policy.allow instanceof Array) {
 							policy.allow.map((allow) => {
-								robotsTxtContent += `Allow: ${allow}\n`;
+								robotsTxtContent += `allow: ${allow}\n`;
 							});
 						} else {
-							robotsTxtContent += `Allow: ${policy.allow}\n`;
+							robotsTxtContent += `allow: ${policy.allow}\n`;
 						}
 					}
 
 					if (policy.disallow) {
 						if (policy.disallow instanceof Array) {
 							policy.disallow.map((disallow) => {
-								robotsTxtContent += `Disallow: ${disallow}\n`;
+								robotsTxtContent += `disallow: ${disallow}\n`;
 							});
 						} else {
-							robotsTxtContent += `Disallow: ${policy.disallow}\n`;
+							robotsTxtContent += `disallow: ${policy.disallow}\n`;
 						}
 					}
 
 					if (policy.cleanParam) {
 						if (policy.cleanParam instanceof Array) {
 							policy.cleanParam.map((cleanParam) => {
-								robotsTxtContent += `Clean-param: ${cleanParam}\n`;
+								robotsTxtContent += `clean-param: ${cleanParam}\n`;
 							});
 						} else {
-							robotsTxtContent += `Clean-param: ${policy.cleanParam}\n`;
+							robotsTxtContent += `clean-param: ${policy.cleanParam}\n`;
 						}
 					}
 
 					if (policy.crawlDelay) {
-						robotsTxtContent += `Crawl-delay: ${policy.crawlDelay}\n`;
+						robotsTxtContent += `crawl-delay: ${policy.crawlDelay}\n`;
 					}
 
 					robotsTxtContent += "\n";
 				});
 
 				if (validatedOptions.host) {
-					robotsTxtContent += `Host: ${validatedOptions.host}\n`;
+					robotsTxtContent += `host: ${validatedOptions.host}\n`;
 				}
 
-				writeFileSync(
-					new URL("robots.txt", dir),
-					robotsTxtContent,
-				);
+				writeFileSync(new URL("robots.txt", dir), robotsTxtContent);
 
 				logger.info("`robots.txt` created.");
 			},
