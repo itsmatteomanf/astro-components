@@ -1,5 +1,11 @@
 # @itsmatteomanf/astro-early-hints
 
+## 0.3.1
+
+### Patch Changes
+
+- [`8c839a9`](https://github.com/itsmatteomanf/astro-components/commit/8c839a9d47f09493269a8d13d138daf36c61f71a) Thanks [@itsmatteomanf](https://github.com/itsmatteomanf)! - Clean up dependecies
+
 ## 0.3.0
 
 ### Minor Changes

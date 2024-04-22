@@ -1,6 +1,6 @@
 {
   "name": "@itsmatteomanf/astro-security-txt",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Generate a security.txt file for your Astro site",
   "keywords": [
     "astro-integration",
