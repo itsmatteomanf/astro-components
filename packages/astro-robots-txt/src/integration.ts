@@ -38,6 +38,60 @@ export const integration = (options: RobotsTxtOptions): AstroIntegration => {
 
 				let robotsTxtContent = "";
 
+				if (validatedOptions.sitemap) {
+					if (validatedOptions.sitemap instanceof Boolean) {
+						robotsTxtContent += `Sitemap: ${new URL(`${validatedOptions.sitemapBaseFileName}.xml`, config.site)}\n`;
+					} else if (validatedOptions.sitemap instanceof Array) {
+						validatedOptions.sitemap.map((sitemap) => {
+							robotsTxtContent += `Sitemap: ${sitemap}\n`;
+						});
+					} else {
+						robotsTxtContent += `Sitemap: ${validatedOptions.sitemap}\n`;
+					}
+				}
+
+				robotsTxtContent += "\n";
+
+				validatedOptions.policy.map((policy) => {
+					robotsTxtContent += `User-agent: ${policy.userAgent}\n`;
+
+					if (policy.allow) {
+						if (policy.allow instanceof Array) {
+							policy.allow.map((allow) => {
+								robotsTxtContent += `Allow: ${allow}\n`;
+							});
+						} else {
+							robotsTxtContent += `Allow: ${policy.allow}\n`;
+						}
+					}
+
+					if (policy.disallow) {
+						if (policy.disallow instanceof Array) {
+							policy.disallow.map((disallow) => {
+								robotsTxtContent += `Disallow: ${disallow}\n`;
+							});
+						} else {
+							robotsTxtContent += `Disallow: ${policy.disallow}\n`;
+						}
+					}
+
+					if (policy.cleanParam) {
+						if (policy.cleanParam instanceof Array) {
+							policy.cleanParam.map((cleanParam) => {
+								robotsTxtContent += `Clean-param: ${cleanParam}\n`;
+							});
+						} else {
+							robotsTxtContent += `Clean-param: ${policy.cleanParam}\n`;
+						}
+					}
+
+					if (policy.crawlDelay) {
+						robotsTxtContent += `Crawl-delay: ${policy.crawlDelay}\n`;
+					}
+
+					robotsTxtContent += "\n";
+				});
+
 				if (validatedOptions.host) {
 					robotsTxtContent += `Host: ${validatedOptions.host}\n`;
 				}
@@ -47,7 +101,7 @@ export const integration = (options: RobotsTxtOptions): AstroIntegration => {
 					robotsTxtContent,
 				);
 
-				logger.info("`robots.txt` is created.");
+				logger.info("`robots.txt` created.");
 			},
 		},
 	};

@@ -25,7 +25,7 @@ export const ZodTypes = z
 		sitemap: schemaSitemapItem.or(schemaSitemapItem.array()).or(z.boolean()).optional().default(defaultPolicy.sitemap),
 		policy: z
 			.object({
-				userAgent: z.string().min(1),
+				userAgent: schemaPath.default('*'),
 				allow: schemaPath,
 				disallow: schemaPath,
 				cleanParam: schemaCleanParam.or(schemaCleanParam.array()).optional(),
