@@ -1,10 +1,10 @@
 import type { AstroConfig, AstroIntegration } from "astro";
 import { writeFileSync } from "node:fs";
-import { ZodError, z } from "zod";
+import { ZodError, boolean, z } from "zod";
 import { name } from "../package.json";
 import { ZodTypes, validateOptions } from "./libs/validate-options";
 
-export const integration = (options: RobotsTxtOptions): AstroIntegration => {
+export const integration = (options?: RobotsTxtOptions): AstroIntegration => {
 	let config: AstroConfig;
 	let generate = true;
 	let validatedOptions: z.infer<typeof ZodTypes>;
@@ -36,7 +36,7 @@ export const integration = (options: RobotsTxtOptions): AstroIntegration => {
 				let robotsTxtContent = "";
 
 				if (validatedOptions.sitemap) {
-					if (validatedOptions.sitemap instanceof Boolean) {
+					if (typeof validatedOptions.sitemap === "boolean") {
 						if (!config.site) {
 							logger.warn("No `site` provided. `robots.txt` has no sitemap.");
 						} else {
@@ -89,8 +89,6 @@ export const integration = (options: RobotsTxtOptions): AstroIntegration => {
 					if (policy.crawlDelay) {
 						robotsTxtContent += `crawl-delay: ${policy.crawlDelay}\n`;
 					}
-
-					robotsTxtContent += "\n";
 				});
 
 				if (validatedOptions.host) {
