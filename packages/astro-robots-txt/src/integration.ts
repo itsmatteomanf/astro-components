@@ -1,6 +1,6 @@
 import type { AstroConfig, AstroIntegration } from "astro";
 import { writeFileSync } from "node:fs";
-import { ZodError, boolean, z } from "zod";
+import { ZodError, z } from "zod";
 import { name } from "../package.json";
 import { ZodTypes, validateOptions } from "./libs/validate-options";
 
