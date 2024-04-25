@@ -1,0 +1,58 @@
+{
+  "name": "@itsmatteomanf/astro-robots-txt",
+  "version": "0.1.0",
+  "description": "Generate a robots.txt file for your Astro site",
+  "keywords": [
+    "astro-integration",
+    "astro-component",
+    "withastro",
+    "astro",
+    "robots",
+    "robots.txt",
+    "robots-txt"
+  ],
+  "homepage": "https://github.com/itsmatteomanf/astro-components/tree/main/packages/astro-robots-txt#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/itsmatteomanf/astro-components.git",
+    "directory": "packages/astro-robots-txt"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Matteo Manfredi",
+    "email": "matteo@manfredi.io",
+    "url": "https://matteo.manfredi.io"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "format": "pnpm run format:code",
+    "format:ci": "pnpm run format:imports && pnpm run format:code",
+    "format:code": "prettier -w --cache '**/*' --ignore-unknown",
+    "format:imports": "organize-imports-cli ./tsconfig.json"
+  },
+  "dependencies": {
+    "zod": "^3.22.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "tsup": "^8.0.2"
+  },
+  "peerDependencies": {
+    "astro": "^4.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
