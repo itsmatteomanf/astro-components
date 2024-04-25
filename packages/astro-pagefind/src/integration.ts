@@ -42,13 +42,13 @@ export const integration = (options?: PagefindOptions): AstroIntegration => {
 						await index?.addDirectory({
 							path: new URL(directory, dir).pathname,
 						});
-						logger.info(`Added ${directory} to the index.`);
+						logger.info(`Added \`/${directory}\` to the index.`);
 					});
 
 					await index?.writeFiles({
 						outputPath: new URL(validatedOptions.site, dir).pathname,
 					});
-					logger.info(`Wrote Pagefind files to ${validatedOptions.site}.`);
+					logger.info(`Wrote Pagefind files to \`/${validatedOptions.site}\`.`);
 				} catch (error) {
 					logger.error(
 						`Error building Pagefind index. Search will not be available.`,
