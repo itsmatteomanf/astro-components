@@ -1,5 +1,11 @@
 # @itsmatteomanf/astro-pagefind
 
+## 0.3.5
+
+### Patch Changes
+
+- [`b9bc5e7`](https://github.com/itsmatteomanf/astro-components/commit/b9bc5e7f3d7e16cf31f30aa508c4875248f79336) Thanks [@itsmatteomanf](https://github.com/itsmatteomanf)! - Fix logging text
+
 ## 0.3.4
 
 ### Patch Changes

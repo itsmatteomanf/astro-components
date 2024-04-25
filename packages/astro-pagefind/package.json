@@ -1,6 +1,6 @@
 {
   "name": "@itsmatteomanf/astro-pagefind",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "Performs the indexing operation for the Pagefind search engine",
   "keywords": [
     "astro-integration",
