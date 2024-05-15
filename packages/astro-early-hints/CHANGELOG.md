@@ -1,5 +1,11 @@
 # @itsmatteomanf/astro-early-hints
 
+## 0.3.2
+
+### Patch Changes
+
+- [`b31f4fa`](https://github.com/itsmatteomanf/astro-components/commit/b31f4fab855e65dfb01494d80207a7160d89eb9a) Thanks [@itsmatteomanf](https://github.com/itsmatteomanf)! - Check and run middleware only on HTML
+
 ## 0.3.1
 
 ### Patch Changes

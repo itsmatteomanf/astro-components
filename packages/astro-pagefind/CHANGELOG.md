@@ -1,5 +1,11 @@
 # @itsmatteomanf/astro-pagefind
 
+## 0.3.6
+
+### Patch Changes
+
+- [`b31f4fa`](https://github.com/itsmatteomanf/astro-components/commit/b31f4fab855e65dfb01494d80207a7160d89eb9a) Thanks [@itsmatteomanf](https://github.com/itsmatteomanf)! - Import formatting
+
 ## 0.3.5
 
 ### Patch Changes
