@@ -1,6 +1,6 @@
 {
   "name": "@itsmatteomanf/astro-early-hints",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Generates Link tags for your Astro site",
   "keywords": [
     "astro-integration",

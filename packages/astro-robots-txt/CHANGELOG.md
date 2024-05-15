@@ -1,5 +1,11 @@
 # @itsmatteomanf/astro-robots-txt
 
+## 0.1.2
+
+### Patch Changes
+
+- [`485a071`](https://github.com/itsmatteomanf/astro-components/commit/485a0712167442c8d1ad62696b6ef36bd0c49e9b) Thanks [@itsmatteomanf](https://github.com/itsmatteomanf)! - Updated deps
+
 ## 0.1.1
 
 ### Patch Changes
