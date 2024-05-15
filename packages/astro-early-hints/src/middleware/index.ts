@@ -1,29 +1,28 @@
 import { defineMiddleware } from "astro/middleware";
 import { parse } from "node-html-parser";
 
-export const onRequest = defineMiddleware(async ({ request }, next) => {
-	if (request.headers.get("Accept")?.includes("text/html")) {
-		const html = await next();
+export const onRequest = defineMiddleware(async (_, next) => {
+	const response = await next();
 
-		const root = parse(await html.text());
-		const head = root.querySelector("head")!;
-
-		root.querySelectorAll('link[rel="stylesheet"]').map((style) => {
-			head.insertAdjacentHTML(
-				"afterbegin",
-				`<link rel="preload" as="style" href="${style.getAttribute("href")}">`,
-			);
-		});
-
-		root.querySelectorAll('script[type="module"]').map((script) => {
-			head.insertAdjacentHTML(
-				"afterbegin",
-				`<link rel="modulepreload" href="${script.getAttribute("src")}">`,
-			);
-		});
-
-		return new Response(root.toString(), html);
-	} else {
-		return next();
+	if (!response.headers.get("content-type")?.includes("text/html")) {
+		return response;
 	}
+	const root = parse(await response.text());
+	const head = root.querySelector("head")!;
+
+	root.querySelectorAll('link[rel="stylesheet"]').map((style) => {
+		head.insertAdjacentHTML(
+			"afterbegin",
+			`<link rel="preload" as="style" href="${style.getAttribute("href")}">`,
+		);
+	});
+
+	root.querySelectorAll('script[type="module"]').map((script) => {
+		head.insertAdjacentHTML(
+			"afterbegin",
+			`<link rel="modulepreload" href="${script.getAttribute("src")}">`,
+		);
+	});
+
+	return new Response(root.toString(), response);
 });

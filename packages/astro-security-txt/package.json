@@ -43,10 +43,10 @@
     "format:imports": "organize-imports-cli ./tsconfig.json"
   },
   "dependencies": {
-    "zod": "^3.22.5"
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@types/node": "^20.12.7",
+    "@types/node": "^20.12.12",
     "tsup": "^8.0.2"
   },
   "peerDependencies": {
