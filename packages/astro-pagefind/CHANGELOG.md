@@ -1,5 +1,11 @@
 # @itsmatteomanf/astro-pagefind
 
+## 0.4.0
+
+### Minor Changes
+
+- Add Astro v5.0 support
+
 ## 0.3.7
 
 ### Patch Changes

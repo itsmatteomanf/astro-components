@@ -1,5 +1,11 @@
 # @itsmatteomanf/astro-robots-txt
 
+## 0.2.0
+
+### Minor Changes
+
+- Add Astro v5.0 support
+
 ## 0.1.2
 
 ### Patch Changes

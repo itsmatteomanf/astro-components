@@ -1,5 +1,11 @@
 # @itsmatteomanf/astro-early-hints
 
+## 0.4.0
+
+### Minor Changes
+
+- Add Astro v5.0 support
+
 ## 0.3.3
 
 ### Patch Changes
