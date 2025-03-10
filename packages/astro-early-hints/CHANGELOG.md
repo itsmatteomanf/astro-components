@@ -1,5 +1,11 @@
 # @itsmatteomanf/astro-early-hints
 
+## 0.4.1
+
+### Patch Changes
+
+- [`b71f4e8`](https://github.com/itsmatteomanf/astro-components/commit/b71f4e871957c3ceef322a2224347bf1d7b9c34e) Thanks [@itsmatteomanf](https://github.com/itsmatteomanf)! - fixes undefined preloads
+
 ## 0.4.0
 
 ### Minor Changes
