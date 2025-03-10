@@ -10,7 +10,8 @@ export const onRequest = defineMiddleware(async (_, next) => {
 	const root = parse(await response.text());
 	const head = root.querySelector("head")!;
 
-	root.querySelectorAll('link[rel="stylesheet"]')
+	root
+		.querySelectorAll('link[rel="stylesheet"]')
 		.filter((style) => style.hasAttribute("href") && style.getAttribute("href"))
 		.map((style) => {
 			head.insertAdjacentHTML(
@@ -19,8 +20,11 @@ export const onRequest = defineMiddleware(async (_, next) => {
 			);
 		});
 
-	root.querySelectorAll('script[type="module"]')
-		.filter((script) => script.hasAttribute("src") && script.getAttribute("src"))
+	root
+		.querySelectorAll('script[type="module"]')
+		.filter(
+			(script) => script.hasAttribute("src") && script.getAttribute("src"),
+		)
 		.map((script) => {
 			head.insertAdjacentHTML(
 				"afterbegin",
