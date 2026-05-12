@@ -52,7 +52,7 @@
     "format:imports": "organize-imports-cli ./tsconfig.json"
   },
   "dependencies": {
-    "node-html-parser": "^6.1.13",
+    "node-html-parser": "^7.0.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
