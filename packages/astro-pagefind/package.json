@@ -50,11 +50,12 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "astro": "^7.1.1",
     "tsup": "^8.5.1",
     "typescript": "^6.0.3"
   },
   "peerDependencies": {
-    "astro": "^4.0.0 || ^5.0.0",
+    "astro": "^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0",
     "pagefind": "^1.0.0"
   },
   "publishConfig": {
