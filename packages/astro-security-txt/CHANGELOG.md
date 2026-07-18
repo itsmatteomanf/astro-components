@@ -1,5 +1,11 @@
 # @itsmatteomanf/astro-security-txt
 
+## 0.4.1
+
+### Patch Changes
+
+- [`44fe06e`](https://github.com/itsmatteomanf/astro-components/commit/44fe06eb6337d6c10ed763d604e8f798b5894793) Thanks [@itsmatteomanf](https://github.com/itsmatteomanf)! - Update runtime and build dependencies.
+
 ## 0.4.0
 
 ### Minor Changes
