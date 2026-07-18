@@ -15,7 +15,7 @@ export const onRequest = defineMiddleware(async (_, next) => {
 		.filter((style) => style.hasAttribute("href") && style.getAttribute("href"))
 		.map((style) => {
 			head.insertAdjacentHTML(
-				"afterbegin",
+				"beforeend",
 				`<link rel="preload" as="style" href="${style.getAttribute("href")}">`,
 			);
 		});
@@ -27,7 +27,7 @@ export const onRequest = defineMiddleware(async (_, next) => {
 		)
 		.map((script) => {
 			head.insertAdjacentHTML(
-				"afterbegin",
+				"beforeend",
 				`<link rel="modulepreload" href="${script.getAttribute("src")}">`,
 			);
 		});

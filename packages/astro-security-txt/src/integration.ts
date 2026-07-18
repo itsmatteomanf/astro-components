@@ -41,21 +41,18 @@ export const integration = (options: SecurityTxtOptions): AstroIntegration => {
 				securityTxtContent += `Expires: ${validatedOptions.expires.toISOString()}\n`;
 
 				if (
-					validatedOptions.canonical instanceof Boolean ||
+					validatedOptions.canonical === true ||
 					validatedOptions.canonical === undefined
 				) {
-					if (
-						validatedOptions.canonical ||
-						validatedOptions.canonical === undefined
-					) {
-						if (!config.site) {
-							logger.warn(
-								"No `site` provided. `security.txt` has no canonical.",
-							);
-						} else {
-							securityTxtContent += `Canonical: ${config.site}.well-known/security.txt\n\n`;
-						}
+					if (!config.site) {
+						logger.warn(
+							"No `site` provided. `security.txt` has no canonical.",
+						);
+					} else {
+						securityTxtContent += `Canonical: ${new URL("/.well-known/security.txt", config.site)}\n\n`;
 					}
+				} else if (typeof validatedOptions.canonical === "string") {
+					securityTxtContent += `Canonical: ${validatedOptions.canonical}\n\n`;
 				} else if (validatedOptions.canonical instanceof Array) {
 					validatedOptions.canonical.map((canonical) => {
 						securityTxtContent += `Canonical: ${canonical}\n`;
