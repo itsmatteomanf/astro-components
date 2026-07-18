@@ -1,0 +1,99 @@
+name: Astro Compatibility
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    name: Astro ${{ matrix.astro }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        astro: ["4.16.19", "5.18.2", "6.4.8", "7.1.1"]
+    permissions:
+      contents: read
+    env:
+      ASTRO_VERSION: ${{ matrix.astro }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          package-manager-cache: false
+
+      - name: Install workspace dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build package artifacts
+        run: pnpm run build
+
+      - name: Build a consumer application
+        run: |
+          bundle_dir="$RUNNER_TEMP/astro-components-packages"
+          fixture_dir="$RUNNER_TEMP/astro-components-fixture"
+          mkdir -p "$bundle_dir" "$fixture_dir/src/pages"
+
+          pnpm --filter @itsmatteomanf/astro-early-hints pack --pack-destination "$bundle_dir"
+          pnpm --filter @itsmatteomanf/astro-pagefind pack --pack-destination "$bundle_dir"
+          pnpm --filter @itsmatteomanf/astro-robots-txt pack --pack-destination "$bundle_dir"
+          pnpm --filter @itsmatteomanf/astro-security-txt pack --pack-destination "$bundle_dir"
+
+          early_hints=$(find "$bundle_dir" -name '*astro-early-hints-*.tgz' -print -quit)
+          pagefind=$(find "$bundle_dir" -name '*astro-pagefind-*.tgz' -print -quit)
+          robots_txt=$(find "$bundle_dir" -name '*astro-robots-txt-*.tgz' -print -quit)
+          security_txt=$(find "$bundle_dir" -name '*astro-security-txt-*.tgz' -print -quit)
+
+          cat > "$fixture_dir/package.json" <<EOF
+          {
+            "private": true,
+            "type": "module",
+            "dependencies": {
+              "@itsmatteomanf/astro-early-hints": "file:$early_hints",
+              "@itsmatteomanf/astro-pagefind": "file:$pagefind",
+              "@itsmatteomanf/astro-robots-txt": "file:$robots_txt",
+              "@itsmatteomanf/astro-security-txt": "file:$security_txt",
+              "astro": "$ASTRO_VERSION",
+              "pagefind": "^1.0.0"
+            }
+          }
+          EOF
+
+          cat > "$fixture_dir/astro.config.mjs" <<'EOF'
+          import { defineConfig } from "astro/config";
+          import earlyHints from "@itsmatteomanf/astro-early-hints";
+          import pagefind from "@itsmatteomanf/astro-pagefind";
+          import robotsTxt from "@itsmatteomanf/astro-robots-txt";
+          import securityTxt from "@itsmatteomanf/astro-security-txt";
+
+          export default defineConfig({
+            site: "https://example.com",
+            integrations: [
+              earlyHints(),
+              pagefind(),
+              robotsTxt(),
+              securityTxt({ contact: "mailto:security@example.com" }),
+            ],
+          });
+          EOF
+
+          cat > "$fixture_dir/src/pages/index.astro" <<'EOF'
+          ---
+          ---
+
+          <html><head><title>Compatibility fixture</title></head><body>OK</body></html>
+          EOF
+
+          pnpm --dir "$fixture_dir" install --no-frozen-lockfile
+          pnpm --dir "$fixture_dir" exec astro build
