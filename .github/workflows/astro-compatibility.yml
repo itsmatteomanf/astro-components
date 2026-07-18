@@ -45,10 +45,10 @@ jobs:
           fixture_dir="$RUNNER_TEMP/astro-components-fixture"
           mkdir -p "$bundle_dir" "$fixture_dir/src/pages"
 
-          pnpm --filter @itsmatteomanf/astro-early-hints pack --pack-destination "$bundle_dir"
-          pnpm --filter @itsmatteomanf/astro-pagefind pack --pack-destination "$bundle_dir"
-          pnpm --filter @itsmatteomanf/astro-robots-txt pack --pack-destination "$bundle_dir"
-          pnpm --filter @itsmatteomanf/astro-security-txt pack --pack-destination "$bundle_dir"
+          pnpm --dir packages/astro-early-hints pack --pack-destination "$bundle_dir"
+          pnpm --dir packages/astro-pagefind pack --pack-destination "$bundle_dir"
+          pnpm --dir packages/astro-robots-txt pack --pack-destination "$bundle_dir"
+          pnpm --dir packages/astro-security-txt pack --pack-destination "$bundle_dir"
 
           early_hints=$(find "$bundle_dir" -name '*astro-early-hints-*.tgz' -print -quit)
           pagefind=$(find "$bundle_dir" -name '*astro-pagefind-*.tgz' -print -quit)
