@@ -1,5 +1,11 @@
 # @itsmatteomanf/astro-robots-txt
 
+## 0.3.0
+
+### Minor Changes
+
+- [`5bb0238`](https://github.com/itsmatteomanf/astro-components/commit/5bb023815740c3d7566c931de2882b73659ea836) Thanks [@itsmatteomanf](https://github.com/itsmatteomanf)! - Add support for Astro 6 and 7.
+
 ## 0.2.1
 
 ### Patch Changes
