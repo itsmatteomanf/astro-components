@@ -1,5 +1,11 @@
 # @itsmatteomanf/astro-security-txt
 
+## 0.5.1
+
+### Patch Changes
+
+- [`057a484`](https://github.com/itsmatteomanf/astro-components/commit/057a4843695998f74dff8df3e0116d65a7e8d3c1) Thanks [@itsmatteomanf](https://github.com/itsmatteomanf)! - Fix generated `security.txt` canonical URLs when `site` has no trailing slash, and preserve a document's initial charset declaration when adding early-hint preload tags.
+
 ## 0.5.0
 
 ### Minor Changes

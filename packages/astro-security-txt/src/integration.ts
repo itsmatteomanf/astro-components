@@ -45,9 +45,7 @@ export const integration = (options: SecurityTxtOptions): AstroIntegration => {
 					validatedOptions.canonical === undefined
 				) {
 					if (!config.site) {
-						logger.warn(
-							"No `site` provided. `security.txt` has no canonical.",
-						);
+						logger.warn("No `site` provided. `security.txt` has no canonical.");
 					} else {
 						securityTxtContent += `Canonical: ${new URL("/.well-known/security.txt", config.site)}\n\n`;
 					}
