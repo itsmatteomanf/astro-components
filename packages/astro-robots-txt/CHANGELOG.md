@@ -1,5 +1,11 @@
 # @itsmatteomanf/astro-robots-txt
 
+## 0.3.1
+
+### Patch Changes
+
+- [`a1f71bd`](https://github.com/itsmatteomanf/astro-components/commit/a1f71bdc36e97045d329cd5238dd1f90f2b87566) Thanks [@itsmatteomanf](https://github.com/itsmatteomanf)! - Fix option-schema validation with Zod 4.
+
 ## 0.3.0
 
 ### Minor Changes
