@@ -45,7 +45,9 @@ export const ZodTypes = z
 			.min(1)
 			.optional()
 			.default(defaultPolicy.sitemapBaseFileName),
-		transform: z.function().args(z.string()).returns(z.any()).optional(),
+		transform: z
+			.function({ input: [z.string()], output: z.any() })
+			.optional(),
 	})
 	.default(defaultPolicy);
 
