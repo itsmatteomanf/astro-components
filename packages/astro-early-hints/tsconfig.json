@@ -11,6 +11,7 @@
     "removeComments": true,
     "declaration": true,
     "verbatimModuleSyntax": true,
+    "ignoreDeprecations": "6.0",
     "resolveJsonModule": true
   },
   "exclude": ["dist"]
