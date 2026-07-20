@@ -38,12 +38,14 @@ export const integration = (options?: PagefindOptions): AstroIntegration => {
 					const { index } = await createIndex(validatedOptions.index);
 					logger.info(`Created Pagefind index.`);
 
-					validatedOptions.directories.map(async (directory) => {
-						await index?.addDirectory({
-							path: new URL(directory, dir).pathname,
-						});
-						logger.info(`Added \`/${directory}\` to the index.`);
-					});
+					await Promise.all(
+						validatedOptions.directories.map(async (directory) => {
+							await index?.addDirectory({
+								path: new URL(directory, dir).pathname,
+							});
+							logger.info(`Added \`/${directory}\` to the index.`);
+						}),
+					);
 
 					await index?.writeFiles({
 						outputPath: new URL(validatedOptions.site, dir).pathname,
