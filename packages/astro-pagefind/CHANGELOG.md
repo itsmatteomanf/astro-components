@@ -1,5 +1,11 @@
 # @itsmatteomanf/astro-pagefind
 
+## 0.5.3
+
+### Patch Changes
+
+- [`794d006`](https://github.com/itsmatteomanf/astro-components/commit/794d006286991d1fc374a548b45027a367c328c0) Thanks [@itsmatteomanf](https://github.com/itsmatteomanf)! - Apply default directories and output path when the integration is configured without options.
+
 ## 0.5.2
 
 ### Patch Changes
