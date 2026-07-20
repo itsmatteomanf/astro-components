@@ -1,5 +1,11 @@
 # @itsmatteomanf/astro-pagefind
 
+## 0.5.1
+
+### Patch Changes
+
+- [`56ca152`](https://github.com/itsmatteomanf/astro-components/commit/56ca152edad78eaae1ecebbfed6722143271a72b) Thanks [@itsmatteomanf](https://github.com/itsmatteomanf)! - Wait for Pagefind directories to be indexed before writing the search files.
+
 ## 0.5.0
 
 ### Minor Changes
