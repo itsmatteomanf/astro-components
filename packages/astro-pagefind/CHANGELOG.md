@@ -1,5 +1,11 @@
 # @itsmatteomanf/astro-pagefind
 
+## 0.5.2
+
+### Patch Changes
+
+- [`6042619`](https://github.com/itsmatteomanf/astro-components/commit/60426192b5ce8a7b91f346e4864e909eb12386aa) Thanks [@itsmatteomanf](https://github.com/itsmatteomanf)! - Use filesystem-safe paths and serial indexing, and include the original Pagefind error in build logs.
+
 ## 0.5.1
 
 ### Patch Changes
