@@ -1,4 +1,5 @@
 import type { AstroIntegration } from "astro";
+import { fileURLToPath } from "node:url";
 import { createIndex } from "pagefind";
 import { z, ZodError } from "zod";
 import { name } from "../package.json";
@@ -21,7 +22,7 @@ export const integration = (options?: PagefindOptions): AstroIntegration => {
 					if (error instanceof ZodError) {
 						generate = false;
 						logger.error(
-							`Invalid options for \`security-txt\`. \`security.txt\` will not be generated.`,
+							`Invalid options for \`astro-pagefind\`. A Pagefind index will not be generated.`,
 						);
 					} else {
 						throw error;
@@ -36,24 +37,29 @@ export const integration = (options?: PagefindOptions): AstroIntegration => {
 
 				try {
 					const { index } = await createIndex(validatedOptions.index);
+					if (!index) {
+						throw new Error("Pagefind did not return an index instance.");
+					}
 					logger.info(`Created Pagefind index.`);
 
-					await Promise.all(
-						validatedOptions.directories.map(async (directory) => {
-							await index?.addDirectory({
-								path: new URL(directory, dir).pathname,
-							});
-							logger.info(`Added \`/${directory}\` to the index.`);
-						}),
-					);
+					for (const directory of validatedOptions.directories) {
+						await index.addDirectory({
+							path: fileURLToPath(new URL(directory, dir)),
+						});
+						logger.info(`Added \`/${directory}\` to the index.`);
+					}
 
-					await index?.writeFiles({
-						outputPath: new URL(validatedOptions.site, dir).pathname,
+					await index.writeFiles({
+						outputPath: fileURLToPath(new URL(validatedOptions.site, dir)),
 					});
 					logger.info(`Wrote Pagefind files to \`/${validatedOptions.site}\`.`);
 				} catch (error) {
 					logger.error(
-						`Error building Pagefind index. Search will not be available.`,
+						`Error building Pagefind index. Search will not be available.\n${
+							error instanceof Error
+								? (error.stack ?? error.message)
+								: String(error)
+						}`,
 					);
 				}
 			},
