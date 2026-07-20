@@ -17,7 +17,11 @@ export const PagefindOptions = z
 		site: z.string().optional().default("pagefind"),
 	})
 	.optional()
-	.default({});
+	.default({
+		index: {},
+		directories: [""],
+		site: "pagefind",
+	});
 
 export const validateOptions = (options: unknown) =>
 	PagefindOptions.parse(options);
