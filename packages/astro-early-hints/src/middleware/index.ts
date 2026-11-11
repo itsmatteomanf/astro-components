@@ -4,11 +4,24 @@ import { parse } from "node-html-parser";
 export const onRequest = defineMiddleware(async (_, next) => {
 	const response = await next();
 
-	if (!response.headers.get("content-type")?.includes("text/html")) {
+	if (
+		!response.body ||
+		!response.headers.get("content-type")?.includes("text/html")
+	) {
 		return response;
 	}
-	const root = parse(await response.text());
-	const head = root.querySelector("head")!;
+	const html = await response.text();
+	const root = parse(html);
+	const head = root.querySelector("head");
+	if (!head) {
+		return new Response(html, response);
+	}
+	const escapeAttribute = (value: string) =>
+		value
+			.replaceAll("&", "&amp;")
+			.replaceAll('"', "&quot;")
+			.replaceAll("<", "&lt;")
+			.replaceAll(">", "&gt;");
 
 	root
 		.querySelectorAll('link[rel="stylesheet"]')
@@ -16,7 +29,7 @@ export const onRequest = defineMiddleware(async (_, next) => {
 		.map((style) => {
 			head.insertAdjacentHTML(
 				"beforeend",
-				`<link rel="preload" as="style" href="${style.getAttribute("href")}">`,
+				`<link rel="preload" as="style" href="${escapeAttribute(style.getAttribute("href")!)}">`,
 			);
 		});
 
@@ -28,9 +41,15 @@ export const onRequest = defineMiddleware(async (_, next) => {
 		.map((script) => {
 			head.insertAdjacentHTML(
 				"beforeend",
-				`<link rel="modulepreload" href="${script.getAttribute("src")}">`,
+				`<link rel="modulepreload" href="${escapeAttribute(script.getAttribute("src")!)}">`,
 			);
 		});
 
-	return new Response(root.toString(), response);
+	const headers = new Headers(response.headers);
+	headers.delete("content-length");
+	return new Response(root.toString(), {
+		status: response.status,
+		statusText: response.statusText,
+		headers,
+	});
 });

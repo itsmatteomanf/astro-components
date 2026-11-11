@@ -2,6 +2,7 @@ import type { AstroConfig, AstroIntegration } from "astro";
 import { writeFileSync } from "node:fs";
 import { ZodError, z } from "zod";
 import { name } from "../package.json";
+import type { RobotsTxtOptions } from "./libs/validate-options";
 import { ZodTypes, validateOptions } from "./libs/validate-options";
 
 export const integration = (options?: RobotsTxtOptions): AstroIntegration => {
@@ -54,7 +55,9 @@ export const integration = (options?: RobotsTxtOptions): AstroIntegration => {
 				robotsTxtContent += "\n";
 
 				validatedOptions.policy.map((policy) => {
-					robotsTxtContent += `user-agent: ${policy.userAgent}\n`;
+					for (const userAgent of [policy.userAgent].flat()) {
+						robotsTxtContent += `user-agent: ${userAgent}\n`;
+					}
 
 					if (policy.allow) {
 						if (policy.allow instanceof Array) {
@@ -86,7 +89,7 @@ export const integration = (options?: RobotsTxtOptions): AstroIntegration => {
 						}
 					}
 
-					if (policy.crawlDelay) {
+					if (policy.crawlDelay !== undefined) {
 						robotsTxtContent += `crawl-delay: ${policy.crawlDelay}\n`;
 					}
 				});
@@ -95,7 +98,12 @@ export const integration = (options?: RobotsTxtOptions): AstroIntegration => {
 					robotsTxtContent += `host: ${validatedOptions.host}\n`;
 				}
 
-				writeFileSync(new URL("robots.txt", dir), robotsTxtContent);
+				writeFileSync(
+					new URL("robots.txt", dir),
+					validatedOptions.transform
+						? await validatedOptions.transform(robotsTxtContent)
+						: robotsTxtContent,
+				);
 
 				logger.info("`robots.txt` created.");
 			},

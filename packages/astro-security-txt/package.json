@@ -38,17 +38,16 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "format": "pnpm run format:code",
-    "format:ci": "pnpm run format:imports && pnpm run format:code",
-    "format:code": "prettier -w --cache '**/*' --ignore-unknown",
-    "format:imports": "organize-imports-cli ./tsconfig.json"
+    "format:ci": "prettier --check .",
+    "format:code": "prettier -w --cache '**/*' --ignore-unknown"
   },
   "dependencies": {
-    "zod": "^4.4.3"
+    "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@types/node": "^26.1.1",
-    "astro": "^7.1.1",
-    "tsup": "^8.5.1",
+    "@types/node": "^26.6.6",
+    "astro": "^7.4.11",
+    "tsup": "^9.0.0",
     "typescript": "^6.0.3"
   },
   "peerDependencies": {

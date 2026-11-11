@@ -2,7 +2,9 @@
   "$schema": "https://unpkg.com/@changesets/config@3.0.0/schema.json",
   "changelog": [
     "@changesets/changelog-github",
-    { "repo": "itsmatteomanf/astro-components" }
+    {
+      "repo": "itsmatteomanf/astro-components"
+    }
   ],
   "commit": false,
   "fixed": [],
@@ -10,13 +12,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": [],
-  "packageRules": [
-    {
-      "groupName": "all non-major dependencies",
-      "groupSlug": "all-minor-patch",
-      "matchPackageNames": ["*"],
-      "matchUpdateTypes": ["minor", "patch"]
-    }
-  ]
+  "ignore": []
 }

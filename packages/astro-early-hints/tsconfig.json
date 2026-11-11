@@ -1,18 +1,4 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "compilerOptions": {
-    "module": "ES2022",
-    "target": "ES2021",
-    "strict": true,
-    "moduleResolution": "bundler",
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "removeComments": true,
-    "declaration": true,
-    "verbatimModuleSyntax": true,
-    "ignoreDeprecations": "6.0",
-    "resolveJsonModule": true
-  },
+  "extends": "../../tsconfig.json",
   "exclude": ["dist"]
 }
