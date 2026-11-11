@@ -56,7 +56,7 @@ export default defineConfig({
 
 ### Configuration
 
-The configuration opbject, with its defaults, is here:
+The configuration object, with its defaults, is here:
 
 ```js
 const options = {
@@ -74,7 +74,7 @@ const options = {
 
 The only required option is `contact`, which must be a string or an array of strings.
 
-All other options are optional, or a string or an array of strings.
+`expires` accepts a `Date`. `canonical` accepts a URL, an array of URLs, or a boolean; use `false` to omit the canonical field. The remaining options accept a string or an array of strings.
 
 It follows the specs at [securitytxt.org](https://securitytxt.org).
 

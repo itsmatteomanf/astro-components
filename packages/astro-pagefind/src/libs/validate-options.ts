@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const PagefindOptions = z
+export const ZodTypes = z
 	.object({
 		index: z
 			.object({
@@ -23,5 +23,6 @@ export const PagefindOptions = z
 		site: "pagefind",
 	});
 
-export const validateOptions = (options: unknown) =>
-	PagefindOptions.parse(options);
+export const validateOptions = (options: unknown) => ZodTypes.parse(options);
+
+export type PagefindOptions = z.input<typeof ZodTypes>;

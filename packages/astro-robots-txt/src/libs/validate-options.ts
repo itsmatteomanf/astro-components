@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const defaultPolicy: RobotsTxtOptions & any = {
+const defaultPolicy = {
 	sitemap: true,
 	policy: [
 		{
@@ -50,3 +50,5 @@ export const ZodTypes = z
 	.default(defaultPolicy);
 
 export const validateOptions = (options: unknown) => ZodTypes.parse(options);
+
+export type RobotsTxtOptions = z.input<typeof ZodTypes>;

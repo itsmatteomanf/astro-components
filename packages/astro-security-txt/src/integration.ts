@@ -2,10 +2,8 @@ import type { AstroConfig, AstroIntegration } from "astro";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { ZodError, z } from "zod";
 import { name } from "../package.json";
-import {
-	SecurityTxtOptions as ZodTypes,
-	validateOptions,
-} from "./libs/validate-options";
+import type { SecurityTxtOptions } from "./libs/validate-options";
+import { ZodTypes, validateOptions } from "./libs/validate-options";
 
 export const integration = (options: SecurityTxtOptions): AstroIntegration => {
 	let config: AstroConfig;

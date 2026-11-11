@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const SecurityTxtOptions = z.object({
+export const ZodTypes = z.object({
 	contact: z.union([z.string(), z.array(z.string())]),
 	expires: z
 		.date()
@@ -15,5 +15,6 @@ export const SecurityTxtOptions = z.object({
 	csaf: z.union([z.string(), z.array(z.string())]).optional(),
 });
 
-export const validateOptions = (options: unknown) =>
-	SecurityTxtOptions.parse(options);
+export const validateOptions = (options: unknown) => ZodTypes.parse(options);
+
+export type SecurityTxtOptions = z.input<typeof ZodTypes>;
