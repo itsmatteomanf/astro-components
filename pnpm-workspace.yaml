@@ -14,4 +14,4 @@ minimumReleaseAgeExclude:
 
 # TypeScript 7 lacks the compiler API required by tsup and Prettier plugins.
 overrides:
-  typescript: 6.0.3
+  typescript: 7.0.2
