@@ -52,7 +52,7 @@
     "astro": "^7.4.11",
     "pagefind": "^1.6.0",
     "tsup": "^9.0.0",
-    "typescript": "^6.0.3"
+    "typescript": "^7.0.0"
   },
   "peerDependencies": {
     "astro": "^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0",
