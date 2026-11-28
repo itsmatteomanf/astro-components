@@ -14,7 +14,7 @@
     "version": "changeset version && pnpm install --no-frozen-lockfile && pnpm run format"
   },
   "devDependencies": {
-    "@changesets/changelog-github": "^1.0.1",
+    "@changesets/changelog-github": "^2.0.0",
     "@changesets/cli": "^3.0.3",
     "prettier": "^3.10.0",
     "prettier-plugin-astro": "^1.1.2",
